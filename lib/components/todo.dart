@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../controllers/todo.dart';
-import '../controllers/app.dart';
 
-appDirection({required Widget child}) {
-  return Obx(() => Directionality(
-      textDirection: App.dirc.value == "ltr" ? TextDirection.ltr : TextDirection.rtl,
-      child: child));
-}
+
+
 
 todoContainer(var todo) {
   return Container(

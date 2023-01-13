@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:startup/controllers/todo.dart';
-import '../styles/styles.dart';
-import '../controllers/app.dart';
+import 'package:startup/views/posts.dart';
+import '../components/app.dart';
+import '../components/todo.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -15,25 +17,23 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     Todo.get();
+
   }
 
   @override
   Widget build(BuildContext context) {
     return appDirection(
         child: Scaffold(
-      appBar: AppBar(
-        title: const Text("Getx State Management"),
-        actions: [
-          InkWell(
-            onTap: (){
-              App.changeLang();
-            },
-            child:Container(
-              padding:const  EdgeInsets.all(12),
-                child: const Icon(Icons.language)),
-          )
-        ],
-      ),
+      appBar: appBar(title: "Todos",action: [
+        IconButton(
+          onPressed: () => Get.to(()=>const Posts()),
+          icon: const Icon(Icons.navigation),
+        ),
+        IconButton(
+          onPressed: () => Todo.get(),
+          icon: const Icon(Icons.refresh),
+        )
+      ]),
       body: Container(
           padding: const EdgeInsets.all(5),
           child: Obx(() => Todo.isLoading.value
